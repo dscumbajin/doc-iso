@@ -2,6 +2,7 @@
 
 session_start();
 include "../config/config.php";
+$is_public = $_SESSION['is_public'];
 if (!isset($_SESSION["admin_id"]) || $_SESSION["admin_id"] == null) {
     header("location: index");
 }
@@ -115,17 +116,20 @@ while ($row = mysqli_fetch_array($query)) {
                                 } ?>">
                         <a href="files"><i class="fa fa-archive"></i> <span>Archivos</span></a>
                     </li>
-
-                    <li class="<?php if (isset($active3)) {
-                                    echo $active3;
-                                } ?>">
-                        <a href="users"><i class="fa fa-users"></i> <span>Usuarios</span></a>
-                    </li>
+                    <?php if ($is_public == 0) : ?>
+                        <li class="<?php if (isset($active3)) {
+                                        echo $active3;
+                                    } ?>">
+                            <a href="users"><i class="fa fa-users"></i> <span>Usuarios</span></a>
+                        </li>
+                    
                     <li class="<?php if (isset($active4)) {
                                     echo $active4;
                                 } ?>">
                         <a href="configuration"><i class="fa fa-cog"></i> <span>Configuración</span></a>
                     </li>
+                    <?php endif; ?>
+
                 </ul>
             </section><!-- /.sidebar -->
         </aside>

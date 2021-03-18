@@ -31,8 +31,9 @@
                                   <th>Nombre</th>
                                   <th>Correo Electrónico</th>
                                   <th>Activo(a)</th>
+                                  <th>Perfil</th>
                                   <th>Agregado el</th>
-                                  <th></th>
+                                  <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,9 +53,20 @@
                                             }
                                         ?>
                                     </td>
+                                    <td>
+                                        <?php 
+                                            if($user['is_admin']==1 ){
+                                                echo "<span class='label label-success'>Administrador</span>";
+                                            }else{
+                                                echo "<span class='label label-danger'>User</span>";
+                                            }
+                                        ?>
+                                    </td>
                                     <td><?php echo $user['created_at'] ?></td>
-                                    <td class="" style="width:223px;">
-                                        <a title="Eliminar definitivamente" href="action/deluser?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Banear</a>
+                                    <td >
+                                   //Public
+                                    <a title="Editar perfil" href="action/deluser?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Editar</a>
+                                        <a title="Eliminar definitivamente" href="action/deluser?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Eliminar</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>    

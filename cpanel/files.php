@@ -9,6 +9,7 @@
     for($i=0;$i<6;$i++){
         $token .= $alphabeth[rand(0,strlen($alphabeth)-1)];
     }
+    $is_public = $_SESSION['is_public'];
     $_SESSION["tkn"]=$token;
     $folder=null;
     if(isset($_GET["folder"]) && $_GET["folder"]!=""){
@@ -162,7 +163,9 @@
                                         <th class="hidden-xs hidden-sm">Correo Electrónico</th>
                                         <th class="hidden-xs hidden-sm">Tamaño</th>
                                         <th class="hidden-xs hidden-sm">Subidol el:</th>
+                                        <?php if($is_public ==0):?>
                                         <th class=""></th>
+                                        <?php endif;?>
                                         <!-- <th class="hidden-lg hidden-md"></th> -->
                                     </tr>
                                 </thead>    
@@ -261,9 +264,11 @@
                                         ?>
                                         </td>
                                         <td style="width: 125px;" class="hidden-xs hidden-sm"><?php echo $file['created_at']; ?></td>
+                                        <?php if($is_public ==0):?>
                                         <td class="" style="width:223px;">
                                             <a title="Eliminar definitivamente" href="action/delfile?id=<?php echo $file['code']; ?>&tkn=<?php echo $_SESSION["tkn"]?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Eliminar</a>
                                         </td>
+                                        <?php endif;?>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>

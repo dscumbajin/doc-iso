@@ -27,6 +27,7 @@
 				if ($row['is_admin']>0) { //comprobamos que el usuario este activo
 
 					$_SESSION['admin_id'] = $row['id'];
+					$_SESSION['is_public']=$row['is_public'];
 
 					print "Cargando ... $email";
 					print "<script>window.location='../home';</script>";
