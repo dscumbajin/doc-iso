@@ -19,12 +19,12 @@
 		$is_folder=$rows['is_folder'];
 	}
 
-	$url = "../storage/data/'.$user_id.'/";
+	$url = "../storage/data/$user_id/";
 
 
 	if(!$is_folder){
 		$fullurl=$url.$filename;
-	header("Content-Disposition: attachment; filename='$filename'");
+	header("Content-Disposition: attachment; filename=$filename");
 	readfile($fullurl);
 
 	}
