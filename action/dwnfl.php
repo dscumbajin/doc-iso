@@ -1,6 +1,5 @@
 <?php
   
-
 	include "../config/config.php";
 
 	// Count Download
@@ -20,7 +19,6 @@
 	}
 
 	$url = "../storage/data/$user_id/";
-
 
 	if(!$is_folder){
 		$fullurl=$url.$filename;
