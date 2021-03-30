@@ -31,6 +31,7 @@ if (mysqli_num_rows($sql) > 0) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="images/favicon.ico" />
   <title><?php echo "ISO-DOC |" . " " . $filename ?></title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->

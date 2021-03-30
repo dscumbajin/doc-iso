@@ -5,7 +5,7 @@ include "header.php";
 
 $id = $_SESSION['admin_id'];
 $is_public = $_SESSION['is_public'];
-$count_files = mysqli_query($con, "select * from file");
+$count_files = mysqli_query($con, "select * from file where is_folder = 0");
 $count_download = mysqli_query($con, "select sum(download) as download from file");
 $count_user = mysqli_query($con, "select * from user");
 $count_comments = mysqli_query($con, "select * from comment")
