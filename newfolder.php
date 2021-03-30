@@ -2,7 +2,7 @@
 
     $active4="active"; 
     include "header.php"; 
-    $is_evaluator = $_SESSION['is_evaluator'];
+    
  ?>
     
     <div class="content-wrapper"><!-- Content Wrapper. Contains page content -->

@@ -26,6 +26,7 @@
 			if ($row['is_active']>0) { //comprobamos que el usuario este activo
 
 					$_SESSION['user_id'] = $row['id'];
+					$_SESSION['is_admin']=$row['is_admin'];
 					$_SESSION['is_evaluator']=$row['is_evaluator'];
 
 					print "Cargando ... $email";
