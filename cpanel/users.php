@@ -64,7 +64,7 @@ include "header.php";
                                             <td><?php echo $user['created_at'] ?></td>
                                             <td>
                                                 <!--PUBLICO-->
-                                                <a title="Editar perfil" href="action/deluser?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Editar</a>
+                                                <a title="Editar perfil" href="#" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Editar</a>
                                                 <a title="Eliminar definitivamente" href="action/deluser?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Eliminar</a>
                                             </td>
                                         </tr>
@@ -79,3 +79,6 @@ include "header.php";
     </section>
 </div>
 <?php include "footer.php" ?>
+<script>
+
+</script>

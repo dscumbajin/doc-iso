@@ -73,6 +73,9 @@ while ($row = mysqli_fetch_array($query)) {
                                     <p>
                                         <?php echo $fullname; ?>
                                         <small>(<?php echo $email ?>)</small>
+                                        <!--CONTROLAR EL BLOQUEO DEl super administrador-->
+                                    </p>
+                                    <p>
                                     </p>
                                 </li>
                                 <li class="user-footer">
