@@ -55,5 +55,3 @@ if(!empty($_POST) && isset($_SESSION["user_id"])){
 	//echo "aas";
 	header("location: ../");
 }
-
-?>

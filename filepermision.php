@@ -84,6 +84,33 @@
                                         <?php } ?>
                                     </select>
                                 </div>
+                               <!--  <div class="form-group">
+                                    <label for="exampleInputEmail1">Ubicacion</label>
+                                    <select class="form-control select2" style="width: 100%;" name="folder_id">
+                                        <option value="">Mi unidad</option>
+                                        <?php 
+                                            function getfolders($id,$lev){
+                                                global $con;
+                                                $folder = mysqli_query($con, "select * from file where id=$id");
+                                                $folder_rw = mysqli_fetch_array($folder);
+                                                $str = str_repeat("+", $lev);
+                                                echo "<option value='".$folder_rw['id']."'>".$str.$folder_rw['filename']."</option>";
+
+                                                $folder_id=$folder_rw['id'];
+                                                $getFoldersByFolderId=mysqli_query($con, "select * from file where folder_id=$folder_id and is_folder=1 and status=1 order by created_at desc");
+                                                foreach($getFoldersByFolderId as $f){
+                                                    getfolders($f['id'],$lev+1);
+                                                }
+                                            }
+                                            $user_id=$_SESSION["user_id"];
+                                            $getRootFoldersByUserId=mysqli_query($con, "select * from file where user_id=$user_id and is_folder=1 and folder_id is NULL and status=1 order by created_at desc");
+                                            foreach($getRootFoldersByUserId as $f):
+                                                getfolders($f['id'],0);
+                                            endforeach;
+                                        ?>
+                                    </select>
+                                </div> -->
+
                             </div><!-- /.box-body -->
                             <div class="box-footer">
                                 <input type="hidden" name="file_id" value="<?php echo $file_id;?>">

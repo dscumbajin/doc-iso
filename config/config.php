@@ -4,8 +4,9 @@
 	define('DB_USER', 'root');//Usuario de tu base de datos
 	define('DB_PASS', '');//Contraseña del usuario de la base de datos
 	define('DB_NAME', 'fileshare');//Nombre de la base de datos
+	define('DB_PORT', '3306');
 
-	$con=@mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	$con=@mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
     if(!$con){
         @die("<h2 style='text-align:center'>Imposible conectarse a la base de datos! </h2>".mysqli_error($con));
     }

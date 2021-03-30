@@ -45,7 +45,6 @@
 					$kind=1;
 					$noti_add=mysqli_query($con, "insert into notification (kind,from_id,file_id,to_id,created_at) value ($kind,\"$from_id\",\"$file_id\",$to_id,$created_at)");
 
-
 					if ($query and $noti_add) {
 						// echo "Agregado exitosamente!";
 						header("location: ../filepermision?id=".$file_code."&success");
