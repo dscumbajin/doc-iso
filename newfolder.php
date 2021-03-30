@@ -2,6 +2,7 @@
 
     $active4="active"; 
     include "header.php"; 
+    $is_evaluator = $_SESSION['is_evaluator'];
  ?>
     
     <div class="content-wrapper"><!-- Content Wrapper. Contains page content -->
@@ -64,6 +65,8 @@
                                     <label>Descripción</label>
                                     <textarea class="form-control" name="description" rows="3" placeholder="Descripción ..."></textarea>
                                 </div>
+
+                                <?php if($is_evaluator == 1):?>
                                 <div class="form-group">
                                     <div class="checkbox icheck">
                                         <label>
@@ -71,6 +74,7 @@
                                         </label>
                                     </div>
                                 </div>
+                                <?php endif;?>
                             </div><!-- /.box-body -->
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-warning">Crear Carpeta</button>

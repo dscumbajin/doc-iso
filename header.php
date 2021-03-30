@@ -6,6 +6,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == null) {
     header("location: index");
 }
 $my_user_id = $_SESSION['user_id'];
+$is_evaluator = $_SESSION['is_evaluator'];
 $query = mysqli_query($con, "SELECT * from user where id=$my_user_id");
 while ($row = mysqli_fetch_array($query)) {
     $fullname = $row['fullname'];

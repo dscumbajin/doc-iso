@@ -84,7 +84,7 @@ $folders = mysqli_query($con, "select * from file where user_id=$my_user_id and 
                                 <label>Descripción</label>
                                 <textarea name="description" class="form-control" rows="3" placeholder="Comentario..."></textarea>
                             </div>
-                            
+                            <?php if($is_evaluator == 1):?>
                             <div class="form-group">
                                 <div class="checkbox icheck">
                                     <label>
@@ -92,6 +92,7 @@ $folders = mysqli_query($con, "select * from file where user_id=$my_user_id and 
                                     </label>
                                 </div>
                             </div>
+                            <?php endif;?>
                         </div><!-- /.box-body -->
                         <div class="box-footer">
                             <button type="submit" class="btn btn-warning">Subir archivo</button>
