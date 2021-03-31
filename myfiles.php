@@ -216,6 +216,7 @@ if ($folder != null) {
                                             <td class="hidden-xs hidden-sm">
                                                 <?php
                                                 $url = "storage/data/" . $file['user_id'] . "/" . $file['filename'];
+                                                /* var_dump($url); */
                                                 if (file_exists($url)) {
                                                     $fsize = filesize($url);
                                                     if ($file['filename'] != "") {
