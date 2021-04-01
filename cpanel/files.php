@@ -201,10 +201,11 @@ if ($folder != null) {
                         <div class="box-body ">
                             <div class="box-body table-responsive">
 
-                            <table id="example1" class="table table-bordered table-hover table-striped">
+                                <table id="example1" class="table table-bordered table-hover table-striped">
                                     <thead>
                                         <tr>
                                             <th>Archivo</th>
+                                            <th class="hidden-xs hidden-sm">Descripción</th>
                                             <th class="hidden-xs hidden-sm">Usuario</th>
                                             <th class="hidden-xs hidden-sm">Correo Electrónico</th>
                                             <th class="hidden-xs hidden-sm">Tamaño</th>
@@ -227,7 +228,7 @@ if ($folder != null) {
 
                                                             <a href="file?code=<?php echo $file['code']; ?>">
                                                                 <?php
-                                                                //by abisoft
+
                                                                 $url = "storage/data/" . $file['user_id'] . "/" . $file['filename'];
                                                                 $ftype = explode(".", $url);
                                                                 $count = count($ftype) - 1;
@@ -263,6 +264,11 @@ if ($folder != null) {
                                                             <?php endif; ?>
                                                             <?php echo $file['filename']; ?></a>
                                                 </td>
+
+                                                <td style="width: 250px">
+                                                    <?php echo $file['description']; ?></a>
+                                                </td>
+
                                                 <td>
                                                     <?php
                                                     $show_user_id = $file['user_id'];
@@ -278,7 +284,7 @@ if ($folder != null) {
                                                 <td>
                                                     <?php
                                                     $url = "../storage/data/" . $file['user_id'] . "/" . $file['filename'];
-                                                   /*  var_dump($url); */
+                                                    /*  var_dump($url); */
                                                     if (file_exists($url)) {
                                                         $fsize = filesize($url);
                                                         if ($file['filename'] != "") {
@@ -308,7 +314,7 @@ if ($folder != null) {
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
-                                </table>    
+                                </table>
 
                             </div><!-- /.box-body -->
                         </div>

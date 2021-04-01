@@ -240,7 +240,7 @@ if (!$is_logged) {
                     <!--BOTONES DE ACCION-->
 
                     <div class="btn-group  pull-right">
-                        <a href="filepermision?id=<?php echo $_GET['code']; ?>"><i class="fa fa-globe"></i> Compartir</a>
+                        <a href="filepermision?id=<?php echo $_GET['code']; ?>" class="btn btn-default"><i class="fa fa-globe"></i> Compartir</a>
                     </div>
 
                     <?php if ($is_evaluator == 1) : ?>
@@ -251,7 +251,6 @@ if (!$is_logged) {
                     <br><br>
 
                     <!--FIN BOTONES DE ACCION-->
-
 
                     <?php
                     $comments = mysqli_query($con, "select * from comment where file_id=" . $file_id);
@@ -332,6 +331,7 @@ if (!$is_logged) {
 
 
 <script>
+
     function copylinkdown(id) {
         var aux = document.createElement("input");
         aux.setAttribute("value", document.getElementById(id).innerHTML);
