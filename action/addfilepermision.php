@@ -27,7 +27,7 @@
 
 				//$perm = PermisionData::getByUF($user->id,$file->id);
 				$perm=mysqli_query($con,"select * from permision where user_id=$user_id and file_id=$file_id");
-				if(mysqli_num_rows($perm)==0){
+			/* 	if(mysqli_num_rows($perm)==0){ */
 					$user_id= $user_id;
 					$file_id = $file_id;
 					$p_id= mysqli_real_escape_string($con,(strip_tags($_POST["p_id"],ENT_QUOTES)));
@@ -52,10 +52,10 @@
 						// echo "Hubo un error al dar los permisos!";
 						header("location: ../filepermision?id=".$file_code."&error");
 					}
-				}else{
+			/* 	}else{
 					// echo "No se puede repetir el permiso!";
 					header("location: ../filepermision?id=".$file_code."&errorpermission");
-				}	
+				}	 */
 
 			}else{
 				// echo "No puedes agregarte ati mismo!";

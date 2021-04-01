@@ -72,12 +72,14 @@ while ($row = mysqli_fetch_array($query)) {
                         ?>
                         <!-- Notifications: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu">
+                            <!--NUMERO DE NOTIFICACIONES-->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
                                 <?php if ($c > 0) : ?>
                                     <span class="label label-danger"><?php echo $c; ?></span>
                                 <?php endif; ?>
                             </a>
+                            <!--FIN NUMERO DE NOTIFICACIONES-->
                             <ul class="dropdown-menu">
                                 <li class="header">Tienes <?= $c; ?> Notificaciones</li>
                                 <li>

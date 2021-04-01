@@ -238,16 +238,16 @@ if (!$is_logged) {
                     <p class="text-muted text-right"><i class="fa fa-clock-o"></i> <?php echo $created_at; ?></p>
 
                     <!--BOTONES DE ACCION-->
-                    
+
                     <div class="btn-group  pull-right">
-                        <a href="action/dwnfl?code=<?php echo $code; ?>&id=<?php echo $file_id; ?>&count=<?php echo $file_count; ?>" class="btn btn-default"><i class="fa fa-share-square"></i> Compartir</a>
+                        <a href="filepermision?id=<?php echo $_GET['code']; ?>"><i class="fa fa-globe"></i> Compartir</a>
                     </div>
-                    
-                    <?php if($is_evaluator == 1):?>
-                    <div style="padding-right:6px;" class="btn-group  pull-right">
-                        <a href="action/dwnfl?code=<?php echo $code; ?>&id=<?php echo $file_id; ?>&count=<?php echo $file_count; ?>" class="btn btn-default"><i class="fa fa-upload"></i> Publicar</a>
-                    </div>
-                    <?php endif;?>
+
+                    <?php if ($is_evaluator == 1) : ?>
+                        <div style="padding-right:6px;" class="btn-group  pull-right">
+                            <a href="action/dwnfl?code=<?php echo $code; ?>&id=<?php echo $file_id; ?>&count=<?php echo $file_count; ?>" class="btn btn-default"><i class="fa fa-upload"></i> Publicar</a>
+                        </div>
+                    <?php endif; ?>
                     <br><br>
 
                     <!--FIN BOTONES DE ACCION-->

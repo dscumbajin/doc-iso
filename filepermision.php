@@ -69,11 +69,7 @@
                                       <option value="1">Ver, Dercargar y Comentar</option>
                                     </select>
                                 </div>
-                                <!-- <div class="form-group">
-                                    <label for="email">Correo Electrónico</label>
-                                    <input type="email" name="email" required class="form-control" id="email" placeholder="Correo del amigo, familiar, compañero...">
-                                    <p class="text-muted text-right">Escribe un correo electrónico para otorgarle permisos</p>
-                                </div> -->
+                               
                                 <div class="form-group">
                                     <label for="email">Correo Electrónico</label>
                                     <select class="form-control select2" style="width: 100%;" required name="email" id="email">
