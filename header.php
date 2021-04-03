@@ -43,6 +43,8 @@ while ($row = mysqli_fetch_array($query)) {
     <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
     <!-- micss -->
     <link rel="stylesheet" href="css/micss.css">
+    
+    <link rel="stylesheet" href="css/styles.css">
 
 </head>
 

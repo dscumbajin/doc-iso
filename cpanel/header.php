@@ -42,6 +42,8 @@ while ($row = mysqli_fetch_array($query)) {
     <!-- micss -->
     <link rel="stylesheet" href="../css/micss.css">
 
+    <link rel="stylesheet" href="../css/styles.css">
+
 </head>
 
 <body class="hold-transition skin-yellow sidebar-mini">
