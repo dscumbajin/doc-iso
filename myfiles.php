@@ -239,9 +239,9 @@ if ($folder != null) {
                                             </td>
                                             <td style="width: 125px;" class="hidden-xs hidden-sm"><?php echo $file['created_at']; ?></td>
                                             <td class="hidden-xs hidden-sm" style="width:223px;">
-                                                <a title="Compartir con amigos" href="filepermision?id=<?php echo $file['code']; ?>" class="btn btn-xs btn-default"><i class="fa fa-globe"></i> Compartir</a>
-                                                <a title="Editar" href="editfile?id=<?php echo $file['code']; ?>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i> Editar</a>
-                                                <a title="Mover a la papelera" href="action/recicle?id=<?php echo $file['code']; ?>&tkn=<?php echo $_SESSION["tkn"] ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Eliminar</a>
+                                                <a title="Compartir con amigos" href="filepermision?id=<?php echo $file['code']; ?>" class="btn btn-xs btn-default"><i class="fa fa-globe"></i></a>
+                                                <a title="Editar" href="editfile?id=<?php echo $file['code']; ?>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                                                <a title="Mover a la papelera" href="action/recicle?id=<?php echo $file['code']; ?>&tkn=<?php echo $_SESSION["tkn"] ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
                                             <td class="hidden-lg hidden-md">
                                                 <div class="dropdown">

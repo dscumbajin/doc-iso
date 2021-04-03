@@ -125,14 +125,14 @@
                 <?php if($count>0):?>
                 <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Usuarios: </h3>
+                            <h3 class="box-title">Historico: </h3>
                         </div><!-- /.box-header -->
                         <div class="box-body no-padding" style="margin: 10px">
                             <table class="table table-bordered table-hover table-striped">
                                 <tbody><tr>
                                     <th>Nombre</th>
                                     <th>Permisos</th>
-                                    <th>Fecha</th>
+                                    <th>Fecha envio </th>
                                     <th></th>
                                 </tr>
                                 <?php foreach($permisions as $p):
