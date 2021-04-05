@@ -25,6 +25,7 @@ if(!empty($_POST) && isset($_SESSION["user_id"])){
 
 
 	$handle = new Upload($_FILES['filename']);
+	
 	if ($handle->uploaded) {
 		$url="../storage/data/".$_SESSION["user_id"];
 		$handle->Process($url);

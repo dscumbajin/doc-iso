@@ -242,7 +242,11 @@ if (!$is_logged) {
                     <div class="btn-group  pull-right">
                         <a href="filepermision?id=<?php echo $_GET['code']; ?>" class="btn btn-default"><i class="fa fa-globe"></i> Compartir</a>
                     </div>
-
+                    <?php if ($is_evaluator != 1) : ?>
+                        <div class="btn-group  pull-right">
+                            <a title="Actualizar archivo" href="updatefile?id=<?php echo $_GET['code']; ?>" class="btn btn-default"><i class="fa fa-file"></i> Actualizar</a>
+                        </div>
+                    <?php endif; ?>
                     <?php if ($is_evaluator == 1) : ?>
                         <div style="padding-right:6px;" class="btn-group  pull-right">
                             <a href="action/dwnfl?code=<?php echo $code; ?>&id=<?php echo $file_id; ?>&count=<?php echo $file_count; ?>" class="btn btn-default"><i class="fa fa-upload"></i> Publicar</a>
@@ -253,7 +257,9 @@ if (!$is_logged) {
                     <!--FIN BOTONES DE ACCION-->
 
                     <?php
-                    $comments = mysqli_query($con, "select * from comment where file_id=" . $file_id);
+                    $sql = "select * from comment where file_id in (select id from file where code=" . "'$id_code'" . " or code_last=" . "'$id_code'" . ")";
+                    $comments = mysqli_query($con, $sql);
+                    
                     $count = mysqli_num_rows($comments);
                     // get messages
                     if (isset($_GET['success'])) {
@@ -331,7 +337,6 @@ if (!$is_logged) {
 
 
 <script>
-
     function copylinkdown(id) {
         var aux = document.createElement("input");
         aux.setAttribute("value", document.getElementById(id).innerHTML);
