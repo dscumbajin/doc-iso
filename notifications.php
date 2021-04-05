@@ -29,6 +29,7 @@ include "header.php";
 								<th>Recibida</th>
 								<th>Descripcion</th>
 								<th>Archivo</th>
+								<th>Archivo vigente</th>
 								<th>Fecha</th>
 							</thead>
 							<?php
@@ -40,9 +41,15 @@ include "header.php";
 								$file_rw = mysqli_fetch_array($file);
 								$file_status = $file_rw['status'];
 								$file_code = $file_rw['code'];
+								$file_code_last = $file_rw['code_last'];
 								$file_filename = $file_rw['filename'];
 								$file_is_folder = $file_rw['is_folder'];
 								$file_created_at = $file_rw['created_at'];
+
+								$file_new = mysqli_query($con, "select * from file where code=" . "'$file_code_last'");
+								$file_rw_new = mysqli_fetch_array($file_new);
+								$file_filename_new = $file_rw_new['filename'];
+
 								$from_id = $fx['from_id'];
 								$user = mysqli_query($con, "select * from user where id=$from_id");
 								$user_rw = mysqli_fetch_array($user);
@@ -65,6 +72,20 @@ include "header.php";
 														<i class="fa fa-file"></i>
 													<?php endif; ?>
 													<?php echo $file_filename; ?></a>
+										</td>
+
+										<td>
+
+											<?php if ($file_filename_new != '') : ?>
+												<?php if ($file_is_folder) : ?>
+													<a href="myfiles?folder=<?php echo $file_code_last; ?>">
+														<i class="fa fa-folder"></i>
+													<?php else : ?>
+														<a href="file?code=<?php echo $file_code_last; ?>">
+															<i class="fa fa-file"></i>
+														<?php endif; ?>
+														<?php echo $file_filename_new; ?></a>
+													<?php endif; ?>
 										</td>
 										<td><?php echo $file_created_at; ?></td>
 									</tr>
