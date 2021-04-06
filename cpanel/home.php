@@ -6,7 +6,8 @@ include "header.php";
 $id = $_SESSION['admin_id'];
 $is_public = $_SESSION['is_public'];
 $count_files = mysqli_query($con, "select * from file where is_folder = 0");
-$count_download = mysqli_query($con, "select sum(download) as download from file");
+$sql = "select sum(contador) as download from descargas where id_user=$id";
+$count_download = mysqli_query($con, $sql);
 $count_user = mysqli_query($con, "select * from user");
 $count_comments = mysqli_query($con, "select * from comment")
 
@@ -64,6 +65,7 @@ $count_comments = mysqli_query($con, "select * from comment")
                     <div class="icon">
                         <i class="fa fa-download"></i>
                     </div>
+                    <a href="detallefiles.php?id=<?php echo $id?>" class="small-box-footer">Más info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
             <!--FIN DESCARGAS-->

@@ -141,7 +141,7 @@ if (!$is_logged) {
                         <p style="display: none;" id="copypublic"><?php echo $url2 ?></p>
                         <p style="display: none;" id="copydown"><?php echo $url3 ?></p>
 
-                        <div class="dropdown">
+                        <!-- <div class="dropdown">
                             <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="btn btn-default">
                                 <i class="fa fa-link"></i> Copiar Enlace
                                 <span class="caret"></span>
@@ -155,7 +155,7 @@ if (!$is_logged) {
                                     <a href="#" onclick="copylinkprivate('copyprivate')"><i class="fa fa-unlock-alt"></i> Enlace Privado</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
 
                     <!--ENVIO CORREO -->

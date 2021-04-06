@@ -14,9 +14,9 @@ if (mysqli_num_rows($sqlDes) != null) {
 	while ($fila = mysqli_fetch_array($sqlDes)) {
 		$contador = intval($fila["contador"] + 1);
 	}
-	$sqlUpdDes = mysqli_query($con, "UPDATE descargas SET contador ='.$contador.'WHERE id_user ='" . $user_id . "' and id_file ='" . $id . "'");
+	$sqlUpdDes = mysqli_query($con, "UPDATE descargas SET contador ='.$contador.', download_at = NOW() WHERE id_user ='" . $user_id . "' and id_file ='" . $id . "'");
 } else {
-	$sql = "INSERT INTO descargas (id_user, id_file, contador) VALUES ( $user_id,$id, 1);";
+	$sql = "INSERT INTO descargas (id_user, id_file, contador, download_at) VALUES ( $user_id,$id, 1,NOW());";
 	$sqlInsetDes = mysqli_query($con, $sql);
 }
 

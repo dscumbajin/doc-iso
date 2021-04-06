@@ -2,7 +2,7 @@
 -- Host:                         127.0.0.1
 -- Versión del servidor:         10.1.38-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             11.0.0.5919
+-- HeidiSQL Versión:             11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -10,6 +10,7 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
 -- Volcando estructura de base de datos para fileshare
@@ -67,6 +68,26 @@ CREATE TABLE IF NOT EXISTS `configuration` (
 INSERT INTO `configuration` (`id`, `url_base`, `email_admin`) VALUES
 	(1, 'http://localhost:82/doc-iso/', 'sistemas@bateriasecuador.com');
 /*!40000 ALTER TABLE `configuration` ENABLE KEYS */;
+
+-- Volcando estructura para tabla fileshare.descargas
+DROP TABLE IF EXISTS `descargas`;
+CREATE TABLE IF NOT EXISTS `descargas` (
+  `id_descarga` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL DEFAULT '0',
+  `id_file` int(11) NOT NULL DEFAULT '0',
+  `contador` int(11) NOT NULL DEFAULT '0',
+  `download_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_descarga`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla fileshare.descargas: ~4 rows (aproximadamente)
+/*!40000 ALTER TABLE `descargas` DISABLE KEYS */;
+INSERT INTO `descargas` (`id_descarga`, `id_user`, `id_file`, `contador`, `download_at`) VALUES
+	(1, 3, 48, 5, NULL),
+	(2, 2, 48, 3, '2021-04-06 12:39:30'),
+	(3, 2, 49, 3, '2021-04-06 12:37:24'),
+	(4, 3, 50, 1, NULL);
+/*!40000 ALTER TABLE `descargas` ENABLE KEYS */;
 
 -- Volcando estructura para tabla fileshare.file
 DROP TABLE IF EXISTS `file`;
@@ -130,9 +151,9 @@ INSERT INTO `file` (`id`, `code`, `filename`, `description`, `download`, `is_pub
 	(45, 'ukUIUeg6VvBV', 'Politicas_de_seguridad_de_la_informacion.pptx', 'para revision', 3, 0, 0, 0, 3, 1, 43, '2021-04-01 13:47:51', NULL),
 	(46, 'MzeUMWdx9Rrc', 'Politicas_de_seguridad_de_la_informacion_1.pptx', 'ofi90c\'Â¿ial', 0, 1, 0, 1, 2, 1, 30, '2021-04-01 13:50:12', NULL),
 	(47, 'T_xlG1NokzrO', 'Politicas_de_seguridad_de_la_informacion_2.pptx', 'Vigente', 1, 1, 0, 0, 2, 1, 30, '2021-04-01 15:14:02', NULL),
-	(48, 'GjsbyPBUORKy', '1002-38-2406-1-10-20201215.pdf', '', 3, 0, 0, 0, 3, 1, 43, '2021-04-01 16:11:53', NULL),
-	(49, 'J3tVIBh3GPIa', '1002-38-2406-1-10-20201215_1.pdf', 'versiÃ³n final', 0, 1, 0, 0, 2, 1, 15, '2021-04-01 16:13:42', NULL),
-	(50, 'zvrrHw6EzdoP', 'Datos.xlsx', 'prueba 2', 0, 0, 0, 0, 3, 1, 43, '2021-04-04 18:17:47', '9fWaVw8S5vHb'),
+	(48, 'GjsbyPBUORKy', '1002-38-2406-1-10-20201215.pdf', '', 16, 0, 0, 0, 3, 1, 43, '2021-04-01 16:11:53', NULL),
+	(49, 'J3tVIBh3GPIa', '1002-38-2406-1-10-20201215_1.pdf', 'versiÃ³n final', 3, 1, 0, 0, 2, 1, 15, '2021-04-01 16:13:42', NULL),
+	(50, 'zvrrHw6EzdoP', 'Datos.xlsx', 'prueba 2', 1, 0, 0, 0, 3, 1, 43, '2021-04-04 18:17:47', '9fWaVw8S5vHb'),
 	(51, 'Jh0YggwzUxVZ', 'Datos_-_copia.xlsx', 'prueba 4', 1, 0, 0, 0, 3, 0, 43, '2021-04-04 19:42:31', 'fqdiMFZciHwL'),
 	(52, 'fqdiMFZciHwL', 'new_documento.xlsx', 'prueba 4', 0, 0, 0, 1, 3, 1, 43, '2021-04-04 19:48:13', 'hudfyAoFrrNg'),
 	(53, '6wOPqkfGEJUj', 'Datos_-_copia_1.xlsx', 'prueba 4', 0, 0, 0, 1, 3, 1, 43, '2021-04-04 19:50:57', NULL),
@@ -187,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `permision` (
   CONSTRAINT `permision_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla fileshare.permision: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla fileshare.permision: ~13 rows (aproximadamente)
 /*!40000 ALTER TABLE `permision` DISABLE KEYS */;
 INSERT INTO `permision` (`id`, `p_id`, `user_id`, `file_id`, `created_at`) VALUES
 	(3, 1, 3, 39, '2021-03-31 15:13:57'),
@@ -232,5 +253,6 @@ INSERT INTO `user` (`id`, `fullname`, `email`, `password`, `image`, `is_active`,
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
