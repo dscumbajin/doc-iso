@@ -38,6 +38,7 @@ $count_comments = mysqli_query($con, "select * from comment")
                     <a href="files.php" class="small-box-footer">Más info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
+            <!--DESCARGAS-->
             <div class="col-lg-3 col-xs-6">
                 <div class="small-box bg-red">
                     <!-- small box -->
@@ -65,6 +66,7 @@ $count_comments = mysqli_query($con, "select * from comment")
                     </div>
                 </div>
             </div><!-- ./col -->
+            <!--FIN DESCARGAS-->
             <div class="col-lg-3 col-xs-6">
                 <div class="small-box bg-green">
                     <!-- small box -->

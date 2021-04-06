@@ -1,13 +1,26 @@
 <?php
-
+session_start();
 include "../config/config.php";
 
 // Count Download
+$user_id = $_SESSION["user_id"];
 $id = intval($_GET["id"]);
 $count = intval($_GET["count"] + 1);
 $sql = mysqli_query($con, "UPDATE file SET download ='.$count.'WHERE id ='" . $id . "' ");
-//end count donwload
 
+$sqlDes = mysqli_query($con, "select * from descargas WHERE id_user ='" . $user_id . "' and id_file ='" . $id . "'");
+
+if (mysqli_num_rows($sqlDes) != null) {
+	while ($fila = mysqli_fetch_array($sqlDes)) {
+		$contador = intval($fila["contador"] + 1);
+	}
+	$sqlUpdDes = mysqli_query($con, "UPDATE descargas SET contador ='.$contador.'WHERE id_user ='" . $user_id . "' and id_file ='" . $id . "'");
+} else {
+	$sql = "INSERT INTO descargas (id_user, id_file, contador) VALUES ( $user_id,$id, 1);";
+	$sqlInsetDes = mysqli_query($con, $sql);
+}
+
+//end count donwload
 
 $id_code = $_GET["code"];
 $file = mysqli_query($con, "select * from file where code=\"$id_code\"");
