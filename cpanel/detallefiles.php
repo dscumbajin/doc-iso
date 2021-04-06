@@ -73,7 +73,7 @@ $folder = null;
                                         <th class="hidden-xs hidden-sm">Tamaño</th>
                                         <th class="hidden-xs hidden-sm">Subidol el:</th>
                                         <th class="hidden-xs hidden-sm">Última descarga:</th>
-                                     
+                                        <th class="hidden-lg hidden-md"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -153,6 +153,27 @@ $folder = null;
                                             </td>
                                             <td style="width: 125px;" class="hidden-xs hidden-sm"><?php echo $file['created_at']; ?></td>
                                             <td style="width: 125px;" class="hidden-xs hidden-sm"><?php echo $file['download_at']; ?></td>
+                                            <td class="hidden-lg hidden-md">
+                                                <div class="dropdown">
+                                                    <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="caret"></span>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                                        <li>
+                                                            <a href="#"><?php echo $file['description']; ?></a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="#"><?php echo $file['created_at']; ?></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><?php echo $file['download_at']; ?></a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
