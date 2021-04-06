@@ -11,6 +11,7 @@ for ($i = 0; $i < 6; $i++) {
 }
 $_SESSION["tkn"] = $token;
 $id_user = $_GET["id"];
+$nom_user = $_GET["nom_user"];
 $folder = null;
 
 ?>
@@ -20,7 +21,7 @@ $folder = null;
     <section class="content-header">
         <!-- Content Header (Page header) -->
         <h1><?php if ($folder == null) : ?>
-                Detalle archivos Descargados
+                Archivos descargados por: <?php echo $nom_user?>
             <?php else : ?>
                 <?php
                 foreach ($folder as $clave_carpetas) {
@@ -129,7 +130,7 @@ $folder = null;
 
                                             <td class="hidden-xs hidden-sm">
                                                 <?php
-                                                $url = "storage/data/" . $file['user_id'] . "/" . $file['filename'];
+                                                $url = "../storage/data/" . $file['user_id'] . "/" . $file['filename'];
                                                 /* var_dump($url); */
                                                 if (file_exists($url)) {
                                                     $fsize = filesize($url);

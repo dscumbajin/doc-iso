@@ -27,6 +27,7 @@
 
 					$_SESSION['user_id'] = $row['id'];
 					$_SESSION['is_admin']=$row['is_admin'];
+					$_SESSION['fullname']=$row['fullname'];
 					$_SESSION['is_evaluator']=$row['is_evaluator'];
 
 					print "Cargando ... $email";

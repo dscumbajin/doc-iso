@@ -44,7 +44,7 @@ include "header.php";
                                     ?>
                                         <tr>
                                             <td>
-                                            <a style="font-weight: bold;" title="Detalle descargas" href="detallefiles.php?id=<?php echo $user['id']?>"><i class="fa fa-server" style="color: black;"></i> <?php echo $user['fullname'] ?> </a>
+                                            <a style="font-weight: bold;" title="Detalle descargas" href="detallefiles.php?id=<?php echo $user['id']?>&nom_user=<?php echo $user['fullname'] ?>"><i class="fa fa-server" style="color: black;"></i> <?php echo $user['fullname'] ?> </a>
                                             </td>
                                             <td><?php echo $user['email'] ?></td>
                                             <td style="text-align: center;">

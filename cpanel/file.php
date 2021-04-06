@@ -205,7 +205,7 @@ if (!$is_logged) {
                                             $fullname = $com2['fullname'];
                                         }
                                         ?>
-                                        <img src="images/profiles/<?php echo $profile_pic; ?>" alt="user image" class="offline">
+                                        <img src="../images/profiles/<?php echo $profile_pic; ?>" alt="user image" class="offline">
                                         <p class="message">
                                             <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> <!-- 5:15 --><?php echo $com['created_at']; ?></small>
                                             <a href="#" class="name">

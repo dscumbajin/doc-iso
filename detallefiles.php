@@ -10,6 +10,7 @@ for ($i = 0; $i < 6; $i++) {
     $token .= $alphabeth[rand(0, strlen($alphabeth) - 1)];
 }
 $_SESSION["tkn"] = $token;
+$nom_user = $_SESSION['fullname'];
 $id_user = $_GET["id"];
 $folder = null;
 
@@ -20,7 +21,7 @@ $folder = null;
     <section class="content-header">
         <!-- Content Header (Page header) -->
         <h1><?php if ($folder == null) : ?>
-                Detalle archivos Descargados
+                Archivos descargados por: <?php echo $nom_user ?>
             <?php else : ?>
                 <?php
                 foreach ($folder as $clave_carpetas) {
