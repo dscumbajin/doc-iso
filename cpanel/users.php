@@ -24,13 +24,15 @@ include "header.php";
                     <!-- /.box-header -->
                     <div class="box-body ">
                         <div class="box-body table-responsive">
-                        <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Correo Electrónico</th>
                                         <th>Activo(a)</th>
-                                        <th>Perfil</th>
+                                        <th>Administrador</th>
+                                        <th>Publico</th>
+                                        <th>Evaluador</th>
                                         <th>Agregado el</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -41,9 +43,11 @@ include "header.php";
                                     foreach ($users as $user) :
                                     ?>
                                         <tr>
-                                            <td><?php echo $user['fullname'] ?></td>
-                                            <td><?php echo $user['email'] ?></td>
                                             <td>
+                                            <a style="font-weight: bold;" title="Detalle descargas" href="detallefiles.php?id=<?php echo $user['id']?>"><i class="fa fa-server" style="color: black;"></i> <?php echo $user['fullname'] ?> </a>
+                                            </td>
+                                            <td><?php echo $user['email'] ?></td>
+                                            <td style="text-align: center;">
                                                 <?php
                                                 if ($user['is_active'] == 1) {
                                                     echo "<span class='label label-success'>Activo</span>";
@@ -52,12 +56,30 @@ include "header.php";
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td style="text-align: center;">
                                                 <?php
                                                 if ($user['is_admin'] == 1) {
-                                                    echo "<span class='label label-success'>Administrador</span>";
+                                                    echo "<span class='label label-success'>Si</span>";
                                                 } else {
-                                                    echo "<span class='label label-danger'>User</span>";
+                                                    echo "<span class='label label-danger'>No</span>";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <?php
+                                                if ($user['is_public'] == 1) {
+                                                    echo "<span class='label label-success'>Si</span>";
+                                                } else {
+                                                    echo "<span class='label label-danger'>No</span>";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <?php
+                                                if ($user['is_evaluator'] == 1) {
+                                                    echo "<span class='label label-success'>Si</span>";
+                                                } else {
+                                                    echo "<span class='label label-danger'>No</span>";
                                                 }
                                                 ?>
                                             </td>
