@@ -36,11 +36,11 @@
 					header("location: ../index?noadmin");
 				}
 			}else{
-				header("location: ../index?error");
+				$error=sha1(md5("cuenta inactiva"));
+				header("location: ../index?error=$error");
 			}
 		}else{
-			//header("location: ../index?invalid");
+			$invalid=sha1(md5("contrasena y email invalido"));
+			header("location: ../index?invalid=$invalid");
 		}
-	}	
-
-?>
+	}
