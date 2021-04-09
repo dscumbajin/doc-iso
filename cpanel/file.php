@@ -74,8 +74,8 @@ if (!$is_logged) {
             <h1>Mis Archivos <small><?php echo $filename; ?></small> </h1>
             <?php if (isset($_SESSION["admin_id"])) : ?>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="myfiles"><i class="fa fa-archive"></i> Mis Archivos</a></li>
+                    <li><a href="home"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="files"><i class="fa fa-archive"></i> Mis Archivos</a></li>
 
                     <?php
                     if ($folder_id != 0) {
@@ -84,7 +84,7 @@ if (!$is_logged) {
                             $f_code = $g['code'];
                             $f_filename = $g['filename'];
                         }
-                        echo '<li class="active"><a href="myfiles?folder=' . $f_code . '"><i class="fa fa-folder-open"></i> ' . $f_filename . '</a></li>';
+                        echo '<li class="active"><a href="files?folder=' . $f_code . '"><i class="fa fa-folder-open"></i> ' . $f_filename . '</a></li>';
                     }
                     ?>
                 </ol>
