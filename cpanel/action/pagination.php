@@ -5,8 +5,8 @@
     E-Mail: cumbajindarwin@hotmail.com
     ---------------------------*/
 function paginate($reload, $page, $tpages, $adjacents) {
-	$prevlabel = "&lsaquo; Prev";
-	$nextlabel = "Next &rsaquo;";
+	$prevlabel = "Anterior";
+	$nextlabel = "Siguiente";
 	$out = '<ul class="pagination pagination-large">';
 	
 	// previous label

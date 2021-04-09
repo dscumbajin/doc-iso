@@ -53,15 +53,16 @@ if ($action == 'ajax') {
         if ($numrows > 0) {
 ?>
             <div class="table-responsive">
-                <table id="registros" class="table table-bordered table-striped">
-                    <tr class="info">
+                <table id="registros" class="table table-bordered table-hover table-striped" style="background-color: #fff !important;">
+                    <tr>
 
                         <th>Archivo</th>
-                        <th>Descripción</th>
-                        <th>Usuario</th>
-                        <th>Correo Electrónico</th>
-                        <th>Tamaño</th>
-                        <th>Subido el:</th>
+                        <th class="hidden-xs hidden-sm">Descripción</th>
+                        <th class="hidden-xs hidden-sm">Usuario</th>
+                        <th class="hidden-xs hidden-sm">Correo Electrónico</th>
+                        <th class="hidden-xs hidden-sm">Tamaño</th>
+                        <th class="hidden-xs hidden-sm">Subidol el:</th>
+
                         <?php if ($is_public == 0) : ?>
                             <th class="hidden-xs hidden-sm">Acciones </th>
                         <?php endif; ?>
@@ -129,7 +130,7 @@ if ($action == 'ajax') {
                                         <?php echo $row['filename']; ?></a>
                             </td>
 
-                            <td><?php echo $description; ?></td>
+                            <td style="width: 250px"><?php echo $description; ?></td>
                             <td>
                                 <?php
                                 $show_user_id = $row['user_id'];
@@ -179,7 +180,7 @@ if ($action == 'ajax') {
                     ?>
 
                 </table>
-                <div class="paginacion">
+                <div style="text-align: right;">
 
                     <?php
                     echo paginate($reload, $page, $total_pages, $adjacents);

@@ -74,7 +74,6 @@
     background: black;
 }
 
-
 @media(max-width:770px) {
     .modal {
         padding: 0px !important;
@@ -155,7 +154,7 @@
     margin-right: 10px;
 }
 
-.fa-file-pdf-o{
+.fa-file-pdf-o {
     color: red !important;
 }
 
@@ -163,7 +162,7 @@
     color: green !important;
 }
 
-.fa-file-powerpoint-o{
+.fa-file-powerpoint-o {
     color: red !important;
 }
 
@@ -171,6 +170,6 @@
     color: blue !important;
 }
 
-.fa-file-o{
+.fa-file-o {
     color: black !important;
 }

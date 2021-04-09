@@ -58,6 +58,19 @@
 
     $(".select2").select2();
   });
+
+  $(function() {
+    $('#example3').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+
+    $(".select2").select2();
+  });
 </script>
 
 <script>
