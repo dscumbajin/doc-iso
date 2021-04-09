@@ -94,31 +94,7 @@ if ($folder != null) {
         <!-- Main content -->
         <div class="row">
             <!-- Small boxes (Stat box) -->
-
-            <div class="panel-body">
-
-                <form class="form-horizontal" role="form" id="datos_cotizacion">
-
-                    <div class="form-group row ">
-                        <label for="q2" class="col-md-2 control-label">Archivo</label>
-
-                        <div class="col-md-5">
-                            <input type="text" class="form-control" id="q2" placeholder="Archivo" onkeyup='load(1);'>
-                        </div>
-                        <div class="col-md-3 ">
-                            <button type="button" class="btn btn-default" onclick='load(1);'>
-                                <span><i class="fa fa-search"></i></span> Buscar</button>
-                            <span id="loader"></span>
-                        </div>
-
-                    </div>
-                </form>
-                <div id="resultados"></div><!-- Carga los datos ajax -->
-                <div class='outer_div'></div><!-- Carga los datos ajax -->
-
-            </div>
-
-            <div id= "tabla_original" class="col-md-12">
+            <div class="col-md-12">
                 <?php
                 $files = null;
                 //if(@mysqli_num_rows($folder)==0){
@@ -356,6 +332,7 @@ if ($folder != null) {
             </div>
         </div><!-- /.row -->
     </section>
+
 
 </div><!-- /.content -->
 
