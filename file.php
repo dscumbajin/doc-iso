@@ -111,9 +111,7 @@ if (!$is_logged) {
                 <!-- Small boxes (Stat box) -->
                 <div class="col-lg-6 col-xs-12 col-md-offset-3">
                     <div id="resultados_ajax"></div><!-- Resultados Ajax -->
-                    <div class="btn-group  pull-right">
-                        <a href="action/dwnfl?code=<?php echo $code; ?>&id=<?php echo $file_id; ?>&count=<?php echo $file_count; ?>" class="btn btn-default"><i class="fa fa-download"></i> Descargar</a>
-                    </div>
+
                     <?php
                     $session = sha1(md5($_SESSION['user_id']));
                     $alphabeth = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYZ1234567890_-";
@@ -227,100 +225,107 @@ if (!$is_logged) {
                                 } else {
                                     echo "<h2>$filename</h2>";
                                 }
+                            } ?>
+                            <br><br>
+                            <p><?php echo $description; ?></p><br>
+                            <p class="text-muted text-right"><i class="fa fa-clock-o"></i> <?php echo $created_at; ?></p>
+
+                            <!--BOTONES DE ACCION-->
+                            <div class="btn-group  pull-right">
+                                <a href="action/dwnfl?code=<?php echo $code; ?>&id=<?php echo $file_id; ?>&count=<?php echo $file_count; ?>" class="btn btn-default"><i class="fa fa-download"></i> Descargar</a>
+                            </div>
+
+                            <div class="btn-group  pull-right">
+                                <a href="filepermision?id=<?php echo $_GET['code']; ?>" class="btn btn-default"><i class="fa fa-globe"></i> Compartir</a>
+                            </div>
+                            <?php if ($is_evaluator != 1) : ?>
+                                <div class="btn-group  pull-right">
+                                    <a title="Actualizar archivo" href="updatefile?id=<?php echo $_GET['code']; ?>" class="btn btn-default"><i class="fa fa-file"></i> Actualizar</a>
+                                </div>
+                            <?php endif; ?>
+                            <?php if ($is_evaluator == 1) : ?>
+                                <div style="padding-right:6px;" class="btn-group  pull-right">
+                                    <a href="action/dwnfl?code=<?php echo $code; ?>&id=<?php echo $file_id; ?>&count=<?php echo $file_count; ?>" class="btn btn-default"><i class="fa fa-upload"></i> Publicar</a>
+                                </div>
+                            <?php endif; ?>
+                            <br><br>
+
+                            <!--FIN BOTONES DE ACCION-->
+
+                            <?php
+                            $sql = "select * from comment where file_id in (select id from file where code=" . "'$id_code'" . " or code_last=" . "'$id_code'" . ")";
+                            $comments = mysqli_query($con, $sql);
+
+                            $count = mysqli_num_rows($comments);
+                            // get messages
+                            if (isset($_GET['success'])) {
+                                echo "<p class='alert alert-success'> <i class=' fa fa-exclamation-circle'></i> <strong>¡Comentario agregado! </strong> .</p>";
+                            } elseif (isset($_GET['error'])) {
+                                echo "<p class='alert alert-danger'> <i class=' fa fa-exclamation-circle'></i> <strong>¡Error! </strong>No se puede comentar este archivo.</p>";
                             }
-                        } else {
+                            ?>
+                            <!--INICIO FORM COMENTARIOS-->
+                            <div class="box box-success">
+                                <!-- small box -->
+                                <div class="box-header">
+                                    <i class="fa fa-comments-o"></i>
+                                    <h3 class="box-title">Comentarios (<?php echo $count ?>)</h3>
+                                </div>
+                                <?php if ($count > 0) : ?>
+                                    <div class="box-body chat" id="chat-box">
+                                        <div class="item">
+                                            <!-- chat item -->
+                                            <?php foreach ($comments as $com) : ?>
+                                                <?php
+
+                                                $com_user_id = $com['user_id'];
+                                                $commm = mysqli_query($con, "select * from comment where user_id=$com_user_id");
+                                                while ($usi = mysqli_fetch_array($commm)) {
+                                                    $userd = $usi['user_id'];
+                                                }
+                                                $userss = mysqli_query($con, "select * from user where id=$userd");
+                                                while ($com2 = mysqli_fetch_array($userss)) {
+                                                    $profile_pic = $com2['image'];
+                                                    $fullname = $com2['fullname'];
+                                                }
+                                                ?>
+                                                <img src="images/profiles/<?php echo $profile_pic; ?>" alt="user image" class="offline">
+                                                <p class="message">
+                                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> <!-- 5:15 --><?php echo $com['created_at']; ?></small>
+                                                    <a href="#" class="name">
+                                                        <?php echo $fullname;  ?>
+                                                    </a>
+                                                    <?php echo $com['comment']; ?>
+                                                </p>
+                                            <?php endforeach; ?>
+                                        </div><!-- /.item -->
+                                    </div><!-- /.chat -->
+
+                                <?php endif; ?>
+
+
+                                <div class="box-footer">
+                                    <form method="post" action="action/addfilecomment.php">
+                                        <div class="input-group">
+                                            <input type="hidden" value="<?php echo $file_id ?>" name="id">
+                                            <input name="comment" required class="form-control" placeholder="Escribe un comentario...">
+                                            <div class="input-group-btn">
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-comments"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--FIN FORM COMENTARIOS-->
+
+
+                        <?php } else {
                             echo  "<h1 class='text-muted'>Error 404 El archivo no existe</h1>";
                         }
                         ?>
                     <?php endif; ?>
-                    <br><br>
-                    <p><?php echo $description; ?></p><br>
-                    <p class="text-muted text-right"><i class="fa fa-clock-o"></i> <?php echo $created_at; ?></p>
-
-                    <!--BOTONES DE ACCION-->
-
-                    <div class="btn-group  pull-right">
-                        <a href="filepermision?id=<?php echo $_GET['code']; ?>" class="btn btn-default"><i class="fa fa-globe"></i> Compartir</a>
-                    </div>
-                    <?php if ($is_evaluator != 1) : ?>
-                        <div class="btn-group  pull-right">
-                            <a title="Actualizar archivo" href="updatefile?id=<?php echo $_GET['code']; ?>" class="btn btn-default"><i class="fa fa-file"></i> Actualizar</a>
-                        </div>
-                    <?php endif; ?>
-                    <?php if ($is_evaluator == 1) : ?>
-                        <div style="padding-right:6px;" class="btn-group  pull-right">
-                            <a href="action/dwnfl?code=<?php echo $code; ?>&id=<?php echo $file_id; ?>&count=<?php echo $file_count; ?>" class="btn btn-default"><i class="fa fa-upload"></i> Publicar</a>
-                        </div>
-                    <?php endif; ?>
-                    <br><br>
-
-                    <!--FIN BOTONES DE ACCION-->
-
-                    <?php
-                    $sql = "select * from comment where file_id in (select id from file where code=" . "'$id_code'" . " or code_last=" . "'$id_code'" . ")";
-                    $comments = mysqli_query($con, $sql);
-                    
-                    $count = mysqli_num_rows($comments);
-                    // get messages
-                    if (isset($_GET['success'])) {
-                        echo "<p class='alert alert-success'> <i class=' fa fa-exclamation-circle'></i> <strong>¡Comentario agregado! </strong> .</p>";
-                    } elseif (isset($_GET['error'])) {
-                        echo "<p class='alert alert-danger'> <i class=' fa fa-exclamation-circle'></i> <strong>¡Error! </strong>No se puede comentar este archivo.</p>";
-                    }
-                    ?>
-                    <!--INICIO FORM COMENTARIOS-->
-                    <div class="box box-success">
-                        <!-- small box -->
-                        <div class="box-header">
-                            <i class="fa fa-comments-o"></i>
-                            <h3 class="box-title">Comentarios (<?php echo $count ?>)</h3>
-                        </div>
-                        <?php if ($count > 0) : ?>
-                            <div class="box-body chat" id="chat-box">
-                                <div class="item">
-                                    <!-- chat item -->
-                                    <?php foreach ($comments as $com) : ?>
-                                        <?php
-
-                                        $com_user_id = $com['user_id'];
-                                        $commm = mysqli_query($con, "select * from comment where user_id=$com_user_id");
-                                        while ($usi = mysqli_fetch_array($commm)) {
-                                            $userd = $usi['user_id'];
-                                        }
-                                        $userss = mysqli_query($con, "select * from user where id=$userd");
-                                        while ($com2 = mysqli_fetch_array($userss)) {
-                                            $profile_pic = $com2['image'];
-                                            $fullname = $com2['fullname'];
-                                        }
-                                        ?>
-                                        <img src="images/profiles/<?php echo $profile_pic; ?>" alt="user image" class="offline">
-                                        <p class="message">
-                                            <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> <!-- 5:15 --><?php echo $com['created_at']; ?></small>
-                                            <a href="#" class="name">
-                                                <?php echo $fullname;  ?>
-                                            </a>
-                                            <?php echo $com['comment']; ?>
-                                        </p>
-                                    <?php endforeach; ?>
-                                </div><!-- /.item -->
-                            </div><!-- /.chat -->
-
-                        <?php endif; ?>
 
 
-                        <div class="box-footer">
-                            <form method="post" action="action/addfilecomment.php">
-                                <div class="input-group">
-                                    <input type="hidden" value="<?php echo $file_id ?>" name="id">
-                                    <input name="comment" required class="form-control" placeholder="Escribe un comentario...">
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-comments"></i></button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!--FIN FORM COMENTARIOS-->
                     <?php if (mysqli_num_rows($file) != 0) : ?>
                     <?php else : ?>
                         <div class="jumbotron">
