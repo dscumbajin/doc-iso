@@ -12,6 +12,7 @@ for ($i = 0; $i < 6; $i++) {
 $_SESSION["tkn"] = $token;
 $id_user = $_GET["id"];
 $nom_user = $_GET["nom_user"];
+$fullname = $_SESSION['fullname'];
 $folder = null;
 
 ?>
@@ -21,7 +22,11 @@ $folder = null;
     <section class="content-header">
         <!-- Content Header (Page header) -->
         <h1><?php if ($folder == null) : ?>
-                Archivos descargados por: <?php echo $nom_user?>
+                <?php if (isset($_GET["nom_user"])) : ?>
+                    Archivos descargados por: <?php echo $nom_user ?>
+                <?php else : ?>
+                    Archivos descargados por: <?php echo $fullname ?>
+                <?php endif; ?>
             <?php else : ?>
                 <?php
                 foreach ($folder as $clave_carpetas) {
