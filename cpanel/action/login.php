@@ -24,11 +24,12 @@
 		if ($row = mysqli_fetch_array($query)) 
 		{
 			if ($row['is_active']>0) { //comprobamos que el usuario este activo
-				if ($row['is_admin']>0) { //comprobamos que el usuario este activo
+				if ($row['is_admin']>0) { //comprobamos que el usuario sea administrador
 
 					$_SESSION['admin_id'] = $row['id'];
 					$_SESSION['fullname'] = $row['fullname'];
 					$_SESSION['is_public']=$row['is_public'];
+					$_SESSION['is_admin']=$row['is_admin'];
 
 					print "Cargando ... $email";
 					print "<script>window.location='../home';</script>";

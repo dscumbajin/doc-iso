@@ -76,7 +76,7 @@ if ($action == 'ajax') {
                         $filename = $row['filename'];
                         $description = $row['description'];
                         $download = $row['download'];
-                        $is_public = $row['is_public'];
+                        $is_publico = $row['is_public'];
                         $is_folder = $row['is_folder'];
                         $is_deleted = $row['is_deleted'];
                         $user_id = $row['user_id'];
