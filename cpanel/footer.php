@@ -80,10 +80,8 @@
 
   });
 
-
   function load(page) {
     var q2 = $("#q2").val();
-
     $.ajax({
       url: './action/search_file.php?action=ajax&page=' + page + '&q2=' + q2,
       beforeSend: function(objeto) {
