@@ -1,10 +1,10 @@
 <?php
 session_start();
 //Contiene las variables de configuracion para conectar a la base de datos
-include_once "../../config/config.php";
+include_once "../config/config.php";
 $action = (isset($_REQUEST['action']) && $_REQUEST['action'] != NULL) ? $_REQUEST['action'] : '';
 //ESTADO DEL USUARIO - Usuario publico
-$is_public = $_SESSION['is_public'];
+$user_id = $_SESSION['user_id'];
 
 if ($action == 'ajax') {
     // escaping, additionally removing everything that could be (html/javascript-) code
@@ -15,23 +15,14 @@ if ($action == 'ajax') {
         echo "<script>$('#tabla_original').hide();</script>";
         $aColumns = array('filename'); //Columnas de busqueda
         $sTable = "file";
-        if ($is_public == 0) {
-            $sWhere = "WHERE is_deleted=0   and (";
-            for ($i = 0; $i < count($aColumns); $i++) {
-                $sWhere .= $aColumns[$i] . " LIKE '%" . $q . "%' OR ";
-            }
-            $sWhere = substr_replace($sWhere, "", -3);
-            $sWhere .= ')';
-            $sWhere .= " order by is_folder desc, filename asc";
-        } else {
-            $sWhere = "WHERE is_deleted=0   and is_public=1 and (";
-            for ($i = 0; $i < count($aColumns); $i++) {
-                $sWhere .= $aColumns[$i] . " LIKE '%" . $q . "%' OR ";
-            }
-            $sWhere = substr_replace($sWhere, "", -3);
-            $sWhere .= ')';
-            $sWhere .= " order by is_folder desc, filename asc";
+
+        $sWhere = "WHERE is_deleted=0 and user_id= $user_id and (";
+        for ($i = 0; $i < count($aColumns); $i++) {
+            $sWhere .= $aColumns[$i] . " LIKE '%" . $q . "%' OR ";
         }
+        $sWhere = substr_replace($sWhere, "", -3);
+        $sWhere .= ')';
+        $sWhere .= " order by is_folder desc, filename asc";
 
         include 'pagination.php'; //include pagination file
         //pagination variables
@@ -58,14 +49,11 @@ if ($action == 'ajax') {
 
                         <th>Archivo</th>
                         <th class="hidden-xs hidden-sm">Descripción</th>
-                        <th class="hidden-xs hidden-sm">Usuario</th>
-                        <th class="hidden-xs hidden-sm">Correo Electrónico</th>
                         <th class="hidden-xs hidden-sm">Tamaño</th>
                         <th class="hidden-xs hidden-sm">Subidol el:</th>
+                        <th class="hidden-xs hidden-sm"></th>
+                        <th class="hidden-lg hidden-md"></th>
 
-                        <?php if ($is_public == 0) : ?>
-                            <th class="hidden-xs hidden-sm">Acciones </th>
-                        <?php endif; ?>
 
                     </tr>
                     <?php
@@ -131,21 +119,10 @@ if ($action == 'ajax') {
                             </td>
 
                             <td class="hidden-xs hidden-sm"><?php echo $description; ?></td>
-                            <td class="hidden-xs hidden-sm">
-                                <?php
-                                $show_user_id = $row['user_id'];
-                                $users = mysqli_query($con, "select * from user where id=$show_user_id");
-                                $user_rw = mysqli_fetch_array($users);
-                                echo $user_rw['fullname'];
 
-                                ?>
-                            </td>
-                            <td class="hidden-xs hidden-sm">
-                                <?php echo $user_email = $user_rw['email']; ?>
-                            </td>
                             <td class="hidden-xs hidden-sm">
                                 <?php
-                                $url = "../../storage/data/" . $row['user_id'] . "/" . $row['filename'];
+                                $url = "../storage/data/" . $row['user_id'] . "/" . $row['filename'];
                                 /*  var_dump($url); */
                                 if (file_exists($url)) {
                                     $fsize = filesize($url);
@@ -168,11 +145,31 @@ if ($action == 'ajax') {
                                 ?>
                             </td>
                             <td class="hidden-xs hidden-sm"><?php echo $created_at; ?></td>
-                            <?php if ($is_public == 0) : ?>
-                                <td class="" style="width:223px;">
-                                    <a title="Eliminar definitivamente" href="action/delfile?id=<?php echo $row['code']; ?>&tkn=<?php echo $_SESSION["tkn"] ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Eliminar</a>
-                                </td>
-                            <?php endif; ?>
+
+                            <td class="hidden-xs hidden-sm" style="width:223px;">
+                                <a title="Compartir con amigos" href="filepermision?id=<?php echo $row['code']; ?>" class="btn btn-xs btn-default"><i class="fa fa-globe"></i></a>
+                                <a title="Editar" href="editfile?id=<?php echo $row['code']; ?>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                                <a title="Mover a la papelera" href="action/recicle?id=<?php echo $row['code']; ?>&tkn=<?php echo $_SESSION["tkn"] ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                            </td>
+                            <td class="hidden-lg hidden-md">
+                                <div class="dropdown">
+                                    <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                        <li>
+                                            <a href="filepermision?id=<?php echo $row['code']; ?>"><i class=" btn btn-xs btn-default fa fa-globe"></i> Compartir</a>
+                                        </li>
+                                        <li>
+                                            <a href="editfile?id=<?php echo $row['code']; ?>" ><i class="btn btn-xs btn-warning fa fa-pencil" style="background-color: #f39c12; border-color: #e08e0b;"></i> Editar</a>
+                                        </li>
+                                        <li>
+                                            <a href="action/recicle?id=<?php echo $row['code']; ?>&tkn=<?php echo $_SESSION["tkn"] ?>" ><i class="btn btn-xs btn-danger fa fa-trash" style="background-color: #dd4b39; border-color: #d73925;"></i> Eliminar</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
 
                         </tr>
                     <?php

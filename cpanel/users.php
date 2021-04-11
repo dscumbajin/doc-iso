@@ -29,12 +29,13 @@ include "header.php";
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Correo Electrónico</th>
-                                        <th>Activo(a)</th>
-                                        <th>Administrador</th>
-                                        <th>Publico</th>
-                                        <th>Evaluador</th>
-                                        <th>Agregado el</th>
-                                        <th>Acciones</th>
+                                        <th class="hidden-xs hidden-sm">Activo(a)</th>
+                                        <th class="hidden-xs hidden-sm">Administrador</th>
+                                        <th class="hidden-xs hidden-sm">Publico</th>
+                                        <th class="hidden-xs hidden-sm">Evaluador</th>
+                                        <th class="hidden-xs hidden-sm">Agregado el</th>
+                                        <th class="hidden-xs hidden-sm">Acciones</th>
+                                        <th class="hidden-lg hidden-md"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,11 +44,11 @@ include "header.php";
                                     foreach ($users as $user) :
                                     ?>
                                         <tr>
-                                            <td>
-                                            <a style="font-weight: bold;" title="Detalle descargas" href="detallefiles.php?id=<?php echo $user['id']?>&nom_user=<?php echo $user['fullname'] ?>"><i class="fa fa-server" style="color: black;"></i> <?php echo $user['fullname'] ?> </a>
+                                            <td style="width: 250px">
+                                                <a style="font-weight: bold;" title="Detalle descargas" href="detallefiles.php?id=<?php echo $user['id'] ?>&nom_user=<?php echo $user['fullname'] ?>"><i class="fa fa-server" style="color: black;"></i> <?php echo $user['fullname'] ?> </a>
                                             </td>
-                                            <td><?php echo $user['email'] ?></td>
-                                            <td style="text-align: center;">
+                                            <td ><?php echo $user['email'] ?></td>
+                                            <td class="hidden-xs hidden-sm" style="text-align: center;">
                                                 <?php
                                                 if ($user['is_active'] == 1) {
                                                     echo "<span class='label label-success'>Activo</span>";
@@ -56,7 +57,7 @@ include "header.php";
                                                 }
                                                 ?>
                                             </td>
-                                            <td style="text-align: center;">
+                                            <td class="hidden-xs hidden-sm" style="text-align: center;">
                                                 <?php
                                                 if ($user['is_admin'] == 1) {
                                                     echo "<span class='label label-success'>Si</span>";
@@ -65,7 +66,7 @@ include "header.php";
                                                 }
                                                 ?>
                                             </td>
-                                            <td style="text-align: center;">
+                                            <td class="hidden-xs hidden-sm" style="text-align: center;">
                                                 <?php
                                                 if ($user['is_public'] == 1) {
                                                     echo "<span class='label label-success'>Si</span>";
@@ -74,7 +75,7 @@ include "header.php";
                                                 }
                                                 ?>
                                             </td>
-                                            <td style="text-align: center;">
+                                            <td class="hidden-xs hidden-sm" style="text-align: center;">
                                                 <?php
                                                 if ($user['is_evaluator'] == 1) {
                                                     echo "<span class='label label-success'>Si</span>";
@@ -83,8 +84,8 @@ include "header.php";
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo $user['created_at'] ?></td>
-                                            <td>
+                                            <td class="hidden-xs hidden-sm" ><?php echo $user['created_at'] ?></td>
+                                            <td >
                                                 <!--PUBLICO-->
                                                 <a title="Editar perfil" href="profile?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Editar</a>
                                                 <a title="Eliminar definitivamente" href="action/deluser?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Eliminar</a>

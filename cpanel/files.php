@@ -94,7 +94,7 @@ if ($folder != null) {
         <!-- Main content -->
         <div class="row">
             <!-- Small boxes (Stat box) -->
-
+            <!--BUSCADOR-->
             <div class="panel-body">
 
                 <form class="form-horizontal" role="form" id="datos_cotizacion">
@@ -117,8 +117,9 @@ if ($folder != null) {
                 <div class='outer_div'></div><!-- Carga los datos ajax -->
 
             </div>
+            <!--FIN BUSCADOR-->
 
-            <div id= "tabla_original" class="col-md-12">
+            <div id="tabla_original" class="col-md-12">
                 <?php
                 $files = null;
                 //if(@mysqli_num_rows($folder)==0){
@@ -289,11 +290,11 @@ if ($folder != null) {
                                                             <?php echo $file['filename']; ?></a>
                                                 </td>
 
-                                                <td style="width: 250px">
+                                                <td class="hidden-xs hidden-sm">
                                                     <?php echo $file['description']; ?></a>
                                                 </td>
 
-                                                <td>
+                                                <td class="hidden-xs hidden-sm">
                                                     <?php
                                                     $show_user_id = $file['user_id'];
                                                     $users = mysqli_query($con, "select * from user where id=$show_user_id");
@@ -302,10 +303,10 @@ if ($folder != null) {
 
                                                     ?>
                                                 </td>
-                                                <td>
+                                                <td class="hidden-xs hidden-sm">
                                                     <?php echo $user_email = $user_rw['email']; ?>
                                                 </td>
-                                                <td>
+                                                <td class="hidden-xs hidden-sm">
                                                     <?php
                                                     $url = "../storage/data/" . $file['user_id'] . "/" . $file['filename'];
                                                     /*  var_dump($url); */

@@ -10,6 +10,7 @@ for ($i = 0; $i < 6; $i++) {
     $token .= $alphabeth[rand(0, strlen($alphabeth) - 1)];
 }
 $_SESSION["tkn"] = $token;
+// ACEDER A LOS NIVELES DE LAS CARPETAS
 $folder = null;
 if (isset($_GET["folder"]) && $_GET["folder"] != "") {
     $id_folder = $_GET["folder"];
@@ -47,6 +48,7 @@ if ($folder != null) {
 
 <div class="content-wrapper">
     <!-- Content Wrapper. Contains page content -->
+    <!-- INICIO BARRA DE NAVEGACION-->
     <section class="content-header">
         <!-- Content Header (Page header) -->
         <h1><?php if ($folder == null) : ?>
@@ -81,12 +83,38 @@ if ($folder != null) {
             ?>
         </ol>
     </section>
+    <!-- FIN BARRA DE NAVEGACION-->
 
     <section class="content">
         <!-- Main content -->
         <div class="row">
+            <!--BUSCADOR-->
+            <div class="panel-body">
+
+                <form class="form-horizontal" role="form" id="datos_cotizacion">
+
+                    <div class="form-group row ">
+                        <label for="q2" class="col-md-2 control-label">Archivo</label>
+
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" id="q2" placeholder="Archivo" onkeyup='load(1);'>
+                        </div>
+                        <div class="col-md-3 ">
+                            <button type="button" class="btn btn-default" onclick='load(1);'>
+                                <span><i class="fa fa-search"></i></span> Buscar</button>
+                            <span id="loader"></span>
+                        </div>
+
+                    </div>
+                </form>
+                <div id="resultados"></div><!-- Carga los datos ajax -->
+                <div class='outer_div'></div><!-- Carga los datos ajax -->
+
+            </div>
+            <!--FIN BUSCADOR-->
+
             <!-- Small boxes (Stat box) -->
-            <div class="col-md-12">
+            <div id="tabla_original" class="col-md-12">
                 <?php
                 $files = null;
                 //if(@mysqli_num_rows($folder)==0){
