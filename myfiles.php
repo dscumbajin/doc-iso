@@ -182,7 +182,7 @@ if ($folder != null) {
 
                     <div class="box">
                         <div class="box-body no-padding" style="margin: 15px">
-                            <table id="example1" class="table table-bordered table-hover table-striped">
+                            <table id="example3" class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
                                         <th>Archivo</th>
