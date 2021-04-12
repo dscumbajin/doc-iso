@@ -41,7 +41,7 @@
                                                 $folder = mysqli_query($con, "select * from file where id=$id");
                                                 $folder_rw = mysqli_fetch_array($folder);
                                                 $str = str_repeat("+", $lev);
-                                                echo "<option value='".$folder_rw['id']."'>".$str.$folder_rw['filename']."</option>";
+                                                echo "<option value='".$folder_rw['id']."'>".$str.$folder_rw['filename'].'/'. $folder_rw['description']."</option>";
 
                                                 $folder_id=$folder_rw['id'];
                                                 $getFoldersByFolderId=mysqli_query($con, "select * from file where folder_id=$folder_id and is_folder=1 and status=1 order by created_at desc");
