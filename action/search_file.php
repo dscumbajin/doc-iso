@@ -75,11 +75,11 @@ if ($action == 'ajax') {
                         <tr>
                             <td style="width: 250px">
                                 <?php if ($row['is_folder']) : ?>
-                                    <a href="files?folder=<?php echo $row['code']; ?>">
+                                    <a href="myfiles?folder=<?php echo $row['code']; ?>">
                                         <i class="fa fa-folder"></i>
                                     <?php else : ?>
 
-                                        <a href="file?code=<?php echo $row['code']; ?>">
+                                        <a href="myfiles?code=<?php echo $row['code']; ?>">
                                             <?php
 
                                             $url = "storage/data/" . $row['user_id'] . "/" . $row['filename'];
