@@ -4,6 +4,8 @@ $active2 = "active";
 include "header.php";
 ?>
 <?php
+session_start();
+$user_public = $_SESSION['is_public'];
 $file = null;
 if (isset($_GET["code"]) && $_GET["code"] != "") {
     $id_code = $_GET["code"];
@@ -18,7 +20,6 @@ if (isset($_GET["code"]) && $_GET["code"] != "") {
         $description = $row['description'];
         $created_at = $row['created_at'];
         $file_count = $row['download'];
-
         $folder_id = $row['folder_id'];
     }
 }
@@ -146,7 +147,10 @@ if (!$is_logged) {
                         <br>
                         <?php
                         //$filename1=$filename;
+
                         $url = "../storage/data/" . $user_id . "/" . $filename;
+
+
                         if (file_exists($url)) {
                             $ftype = explode(".", $url);
                             if ($filename != "") {
