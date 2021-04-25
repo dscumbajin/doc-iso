@@ -79,7 +79,7 @@ if ($action == 'ajax') {
                                         <i class="fa fa-folder"></i>
                                     <?php else : ?>
 
-                                        <a href="myfiles?code=<?php echo $row['code']; ?>">
+                                        <a href="file?code=<?php echo $row['code']; ?>">
                                             <?php
 
                                             $url = "storage/data/" . $row['user_id'] . "/" . $row['filename'];
