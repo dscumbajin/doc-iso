@@ -3,7 +3,7 @@ $active1 = "active";
 include "header.php";
 
 $id = $_SESSION['user_id'];
-$count_files = mysqli_query($con, "select * from file where user_id=$id");
+$count_files = mysqli_query($con, "select * from file where user_id=$id and is_folder = 0");
 $sql = "select sum(contador) as download from descargas where id_user=$id";
 $count_download = mysqli_query($con, $sql);
 $count_user = mysqli_query($con, "select * from user");
