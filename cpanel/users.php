@@ -87,8 +87,9 @@ include "header.php";
                                             <td class="hidden-xs hidden-sm" ><?php echo $user['created_at'] ?></td>
                                             <td >
                                                 <!--PUBLICO-->
-                                                <a title="Editar perfil" href="profile?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Editar</a>
-                                                <a title="Eliminar definitivamente" href="action/deluser?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Eliminar</a>
+                                                <a title="Editar perfil" href="profile?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
+                                                <a title="Deshabilitar " href="action/deluser?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                                                <a title="Habilitar" href="action/activaruser?id=<?php echo $user['id']; ?>" class="btn btn-xs btn-success"><i class="fa fa-check-square"></i></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
